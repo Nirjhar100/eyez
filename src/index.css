@@ -1,13 +1,37 @@
 body {
+  background-color: black;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: black;
+
+}
+
+
+
+.id{
+  background-color: teal;
+  background-image: url('https://www.sonyrumors.co/wp-content/uploads/2018/02/sony-a7iii-sample-image-4.jpg');
+  text-decoration-color: black;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+
+.modal{
+  background-color:transparent;
+}
+
+.link{
+  color: #FFF;
+}
+
+.link:hover{
+  color: black
 }
