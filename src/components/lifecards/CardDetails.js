@@ -4,17 +4,12 @@ import Button from 'react-bootstrap/Button'
 import {connect} from 'react-redux'
 
 
-class CardDetails extends Component{
-    render(){
-
-    
-    console.log(this.props)
-    
+const CardDetails =({show,hide,lifecard})=>{
         return(
             
-            <Modal show={this.props.showModal} onHide={this.props.hideModal} size="lg"  >
+            <Modal show={show} onHide={hide} size="lg"  >
                 <Modal.Header closeButton>
-                    <Modal.Title id="contained-modal-title-vcenter">{this.props.lifecard.name} 
+                    <Modal.Title id="contained-modal-title-vcenter">{lifecard.name} 
                    
                         <div className="chip">
                             Tag1
@@ -37,11 +32,11 @@ class CardDetails extends Component{
                     </Modal.Title>
                 </Modal.Header>
                 <div>
-                    <small>Age:{this.props.lifecard.age}</small>
+                    <small>Age:{lifecard.age}</small>
                 </div>
                 <Modal.Body>
-                    <img src= {this.props.lifecard.img} alt=""/>
-                    <p> {this.props.lifecard.content}</p>
+                    <img src= {lifecard.img} alt=""/>
+                    <p> {lifecard.content}</p>
                 </Modal.Body>
                 <Modal.Body>
          
@@ -49,25 +44,20 @@ class CardDetails extends Component{
                     <p> text in a modal!</p>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={this.props.hideModal}>
+                    <Button variant="secondary" onClick={hide}>
                         Close
                     </Button>
-                    <Button variant="primary" onClick={this.props.hideModal}>
+                    <Button variant="primary" onClick={hide}>
                         Save Changes
                     </Button>
                 </Modal.Footer>
             </Modal>
             
         )
-    }
-    }
-
-    const mapStateToProps=(state)=>{
-        return{
-            lifecards: state.lifecard.lifecards
-        }
-    }
+}
+   
 
 
 
-export default connect(mapStateToProps)(CardDetails);
+
+export default CardDetails;

@@ -2,6 +2,9 @@ import React,{Component} from 'react'
 import CardList from '../lifecards/CardList'
 import Intro from '../carousels/Intro'
 import {connect} from 'react-redux';
+import {compose} from 'redux'
+import {firestoreConnect} from 'react-redux-firebase'
+
 
 class Home extends Component{
     
@@ -12,16 +15,20 @@ class Home extends Component{
                 <div className="intro">
                     <Intro/>
                 </div>
-                <CardList lifecards={lifecards} />
+                <CardList lifecards={this.props.lifecards} />
             </div>
         )
     }
 }
 
 const mapStateToProps=(state)=>{
+    console.log(state);
     return{
-        lifecards: state.lifecard.lifecards
+        lifecards: state.firestore.ordered.lifecards||state.lifecard.lifecards
     }
 }
 
-export default connect(mapStateToProps)(Home);
+export default compose(
+    firestoreConnect(['lifecards']),
+    connect(mapStateToProps),
+)(Home);

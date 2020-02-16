@@ -3,18 +3,17 @@ import LifeCard from './LifeCard'
 import {connect} from 'react-redux'
 
 
-class CardList extends Component{
+const CardList =({lifecards})=>{
     
-    render(){
-        const {lifecards}=this.props;
+        console.log(lifecards);
         return(
-         
+            
             <div className="row">
             
                 {lifecards&&lifecards.map(lifecard=>{
                     return(
                         <div className="col s12">
-                        <LifeCard lifecard={lifecard} key={lifecard.id}/>
+                        <LifeCard lifecard={lifecard} />
                         <br/><br/>
                         </div>
                     )
@@ -22,13 +21,9 @@ class CardList extends Component{
             
             </div>
         )
-    }
+    
 }
 
-const mapStateToProps=(state)=>{
-    return{
-        lifecards: state.lifecard.lifecards
-    }
-}
 
-export default connect(mapStateToProps)(CardList) ;
+
+export default CardList ;

@@ -1,4 +1,4 @@
-import React,{Component} from 'react'
+import React,{Component,useState} from 'react'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import Accordion from 'react-bootstrap/Accordion'
@@ -8,30 +8,13 @@ import CardDetails from './CardDetails'
 import {connect} from 'react-redux'
 
 
-class LifeCard extends Component{
+const LifeCard =({lifecard})=>{
 
-    constructor(props){
-        super(props);
-        this.state={
-            show:false
-        }
+    const [show, setShow] = useState(false);
+    function toggle(){
+        setShow(!show);
     }
-    
 
-    showModal = () => {
-      this.setState({ show: true });
-    };
-  
-    hideModal = () => {
-      this.setState({ show: false });
-    };
-  
-    handleClick=(e)=>{
-        console.log('')
-        
-    }
-    render(){
-    const {lifecard}=this.props
     return(
     
         <div className="container ">
@@ -53,21 +36,22 @@ class LifeCard extends Component{
             </Card.Header>
            
             <Card.Title>
-                {this.props.lifecard.name}
+                {lifecard.name}
         
             </Card.Title>
             
             <div className="row">
-            <Link to="" className="col s6" onClick={this.showModal} >
-            <Image src={this.props.lifecard.img} className="col s12" roundedCircle />
+            <Link to="" className="col s6" onClick={() => setShow(true)} >
+            <Image src="https://pvnbooks.com/storage/settings/pvn-default_author_image.jpg" className="col s12" roundedCircle />
             </Link>
            
             <Card.Text className="col s6">
-            {this.props.lifecard.content}
-                </Card.Text>
+            {lifecard.content}
+            </Card.Text>
+            {show ? <CardDetails show={show} hide={toggle} lifecard={lifecard} key={lifecard.id}/> :null}
 
             </div>  
-            <small>Age:{this.props.lifecard.age}</small>
+            <small>Age:{lifecard.age}</small>
             <div>
             <Accordion.Collapse eventKey="0">
             <Card.Body>
@@ -75,16 +59,14 @@ class LifeCard extends Component{
                 <Card.Text>
                 example text to build on the card title and make up the bulk of
                 the card's content....
+                {lifecard.content}
+                {lifecard.content}
                 </Card.Text>
                 
                 
-                {this.state.show ? <CardDetails showModal={this.showModal} hideModal={this.hideModal} lifecard={lifecard} key={lifecard.id}/> :null}
                
-                <button className="btn btn-secondary" onClick={this.showModal}>
-                    <small className="text-white">View Profile</small>
-                   
-                </button>
                
+                
                 
                 
                 </Card.Body>
@@ -120,14 +102,10 @@ class LifeCard extends Component{
         </div>
         
     )
-    }
-}
-
-const mapStateToProps=(state)=>{
-    return{
-        lifecards: state.lifecard.lifecards
-    }
+    
 }
 
 
-export default connect(mapStateToProps)(LifeCard);
+
+
+export default LifeCard;
