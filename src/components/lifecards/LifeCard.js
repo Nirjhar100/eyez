@@ -17,7 +17,7 @@ const LifeCard =({lifecard})=>{
 
     return(
     
-        <div className="container ">
+        <div className="container">
             <Accordion defaultActiveKey="1">     
             <Card bg="info" text="white" border="light" style={{ width: '20rem' }} className="lcid" >
             <Card.Header>
